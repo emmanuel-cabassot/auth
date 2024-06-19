@@ -30,3 +30,7 @@ services:
         arguments: ['@lexik_jwt_authentication.security.jwt_token_authenticator']
         tags:
             - { name: 'security.authenticator' }
+
+    App\EventListener\RefreshTokenListener:
+        tags:
+            - { name: kernel.event_listener, event: gesdinet.refresh_token, method: onRefreshToken }
