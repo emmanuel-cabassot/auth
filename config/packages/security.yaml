@@ -16,22 +16,25 @@ security:
             stateless: true
             entry_point: jwt
             json_login:
-                check_path: /api/login_check
+                check_path: /api/token
                 username_path: login
                 password_path: password
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
             jwt: ~
             refresh_jwt:
-                check_path: /api/token/refresh 
+                check_path: /api/refresh/token 
 
 
     access_control:
-        - { path: ^/api/token/refresh, roles: PUBLIC_ACCESS }
+        - { path: ^/api/validate/, roles: PUBLIC_ACCESS }
+        - { path: ^/api/refresh/token, roles: PUBLIC_ACCESS }
         - { path: ^/api/account/, roles: IS_AUTHENTICATED_FULLY}
         - { path: ^/api/account, roles: ROLE_ADMIN}
-        - { path: ^/api/login, roles: PUBLIC_ACCESS }
-        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/token, roles: PUBLIC_ACCESS }
+        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+
+
 
 
 when@test:
