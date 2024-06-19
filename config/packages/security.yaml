@@ -10,9 +10,6 @@ security:
                 class: App\Entity\User
                 property: login
     firewalls:
-        # login:
-        #     pattern: ^/api/login
-        #     stateless: true
        
         api:
             pattern:   ^/api
